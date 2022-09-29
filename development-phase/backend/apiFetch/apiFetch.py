@@ -59,7 +59,29 @@ class Api:
         for x in arr:
             self._apiMap[x] = self._newCatcherRunner(x)
 
-    def _cricketFetcher(self):
-        
+    def cricketFetcher(self):
+        url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/index"
+        headers = {
+	        "X-RapidAPI-Key": self._key,
+	        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+        }
+        response = requests.request("GET", url, headers=headers) 
+        response=response.json()
+        response=response["storyList"]
+        retArr=[]
+        for x in response:
+            try:
+                x=x["story"]
+                newJson={}
+                newJson["url"]=f'https://www.cricbuzz.com/cricket-news/{x["id"]}/newsTrakcer'
+                newJson["title"]=x["hline"]
+                newJson["image"]=f'https://www.cricbuzz.com/a/img/v1/500x500/i1/c{x["id"]}/abc.jpg'
+                newJson["date"]=x["pubTime"]
+                newJson["topic"]="cricket"
+                retArr.append(newJson)
+            except:
+                pass
+        self._apiMap["cricket"]=retArr
+        print(self._apiMap["cricket"])
 a = Api()
-a.topHeadlinesFetcher()
+a.cricketFetcher()
