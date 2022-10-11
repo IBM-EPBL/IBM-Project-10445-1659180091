@@ -1,5 +1,4 @@
 from datetime import datetime
-from urllib import response
 from flask import request,after_this_request
 from flask_restful import Resource
 from utils.dbQuery import insertQuery
