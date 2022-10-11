@@ -1,6 +1,10 @@
-from flask import request
+from datetime import datetime
+from urllib import response
+from flask import request,after_this_request
 from flask_restful import Resource
-from utils.dbQuery import *
+from utils.dbQuery import insertQuery
+from utils.emailSender import newEmailSender
+from utils.password import genHash
 
 class Register(Resource):
     def post(self):
@@ -9,11 +13,17 @@ class Register(Resource):
         email=req['email']
         password=req['password']
         fav=req['favourite']
-        t=(name,email,password,fav)
-        print(t)
         if(name=='' or email=='' or password=='' or fav==''):
-            return {"status":"Please send all the data"},404
-        res=insertQuery('INSERT INTO user (name,email,password,favourites) values (?,?,?,?)',t)
+            return {"status":"Missing data"},404
+        password=genHash(password)
+        t=(name,email,password,fav,datetime.now())
+        res=insertQuery('INSERT INTO user (name,email,password,favourites,resend_time) values (?,?,?,?,?)',t)
         if(not res):
-            return {"status":"Error while inserting"},400
-        return {"status":"Successfully inserted"},200
+            return {"status":"Error while registering"},400
+        
+        @after_this_request
+        def emailer(response):
+            newEmailSender(email)
+            return response
+        
+        return {"status":"Successfully registered"},200
