@@ -38,26 +38,41 @@ class Api:
         return retArr
 
     def __topHeadlinesFetcher(self):
-        url = "https://google-news.p.rapidapi.com/v1/top_headlines"
-        querystring = {"lang": "en", "country": "IN"}
-        headers = {
-            "X-RapidAPI-Key": self.__key,
-            "X-RapidAPI-Host": "google-news.p.rapidapi.com"
-        }
-        respone = requests.request(
-            "GET", url=url, headers=headers, params=querystring)
+        # url = "https://google-news.p.rapidapi.com/v1/top_headlines"
+        # querystring = {"lang": "en", "country": "IN"}
+        # headers = {
+        #     "X-RapidAPI-Key": self.__key,
+        #     "X-RapidAPI-Host": "google-news.p.rapidapi.com"
+        # }
+        # respone = requests.request(
+        #     "GET", url=url, headers=headers, params=querystring)
+        # respone = respone.json()
+        # retArr = []
+        # for x in respone["articles"]:
+        #     newJson = {}
+        #     newJson["url"] = x["link"]
+        #     currTime = parse(x["published"])
+        #     newJson["date"] = currTime.strftime("%d/%m/%Y")
+        #     newJson["title"] = x["title"]
+        #     newJson["topic"] = "headline"
+        #     retArr.append(newJson)
+        # self.__apiMap["headline"] = retArr
+        # print("Headline fetched at "+str(datetime.now()))
+        querystring = {"lang": "en","media": "True", "country": "IN"}
+        respone = requests.request("GET", url=self.__url, headers=self.__headers, params=querystring)
         respone = respone.json()
         retArr = []
         for x in respone["articles"]:
             newJson = {}
             newJson["url"] = x["link"]
-            currTime = parse(x["published"])
-            newJson["date"] = currTime.strftime("%d/%m/%Y")
             newJson["title"] = x["title"]
-            newJson["topic"] = "headline"
+            newJson["img"] = x["media"]
+            newJson["topic"] = x["topic"]
+            currTime = parse(x["published_date"])
+            newJson["date"] = currTime.strftime("%d/%m/%Y")
             retArr.append(newJson)
-        self.__apiMap["headline"] = retArr
-        print("Headline fetched at "+str(datetime.now()))
+        self.__apiMap["headline"]=retArr
+        print("headline fetched at "+str(datetime.now()))
 
     def __newsCatcherApiFetcher(self):
         arr = ["sport", "tech", "world", "finance", "politics", "business",
@@ -104,7 +119,7 @@ class Api:
             print("Headline fetching.... at "+str(datetime.now()))
             self.__topHeadlinesFetcher()
             self.__mainApiMap = self.__apiMap
-            sleep(20*60)
+            sleep(30*60)
 
     def cricbuzzThreader(self):
         while True:
