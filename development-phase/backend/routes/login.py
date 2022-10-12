@@ -35,6 +35,7 @@ class Login(Resource):
                 {"email":email},app.app.config['SECRET_KEY']
             )
             response.set_cookie("access_token",str(access_token),httponly=True)
+            response.set_cookie("email",str(email),httponly=True)
             return response
         
         return{"status":"Successfully Logged in"},200        
