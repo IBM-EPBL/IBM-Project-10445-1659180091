@@ -7,16 +7,15 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.cookies.get("access_token")
-        print(token)
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
+            data = jwt.decode(token, app.app.config['SECRET_KEY'],algorithms=['HS256'])
         except:
-            resp = {"message":"not logged in"}
+            resp = {"status":"not logged in"}
             @after_this_request
             def deleter(response):
                 response.delete_cookie("access_token", domain="127.0.0.1", path="/")
                 response.delete_cookie("email",domain="127.0.0.1",path="/")
                 return response
             return resp, 401
-        return f("test", *args, **kwargs)
+        return f(data['email'],*args, **kwargs)
     return decorated
