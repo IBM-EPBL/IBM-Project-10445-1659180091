@@ -38,34 +38,14 @@ class Api:
         return retArr
 
     def __topHeadlinesFetcher(self):
-        # url = "https://google-news.p.rapidapi.com/v1/top_headlines"
-        # querystring = {"lang": "en", "country": "IN"}
-        # headers = {
-        #     "X-RapidAPI-Key": self.__key,
-        #     "X-RapidAPI-Host": "google-news.p.rapidapi.com"
-        # }
-        # respone = requests.request(
-        #     "GET", url=url, headers=headers, params=querystring)
-        # respone = respone.json()
-        # retArr = []
-        # for x in respone["articles"]:
-        #     newJson = {}
-        #     newJson["url"] = x["link"]
-        #     currTime = parse(x["published"])
-        #     newJson["date"] = currTime.strftime("%d/%m/%Y")
-        #     newJson["title"] = x["title"]
-        #     newJson["topic"] = "headline"
-        #     retArr.append(newJson)
-        # self.__apiMap["headline"] = retArr
-        # print("Headline fetched at "+str(datetime.now()))
-        querystring = {"lang": "en","media": "True", "country": "IN"}
+        querystring = {"topic":"news","lang": "en","media": "True", "country": "IN"}
         respone = requests.request("GET", url=self.__url, headers=self.__headers, params=querystring)
         respone = respone.json()
         retArr = []
         for x in respone["articles"]:
             newJson = {}
             newJson["url"] = x["link"]
-            newJson["title"] = x["title"]
+            newJson["title"] = x["title"]print
             newJson["img"] = x["media"]
             newJson["topic"] = x["topic"]
             currTime = parse(x["published_date"])
@@ -110,29 +90,43 @@ class Api:
     def newsCatcherThreader(self):
         while True:
             print("NewsCatcher fetching.... at "+str(datetime.now()))
-            self.__newsCatcherApiFetcher()
-            self.__mainApiMap = self.__apiMap
+            try:
+                self.__newsCatcherApiFetcher()
+                self.__mainApiMap = self.__apiMap
+            except:
+                print("Error NewsCatcher fetching.... at "+str(datetime.now()))
+                pass
             sleep(30*60)
 
     def topHeadlinesThreader(self):
         while True:
             print("Headline fetching.... at "+str(datetime.now()))
-            self.__topHeadlinesFetcher()
-            self.__mainApiMap = self.__apiMap
+            try:
+                self.__topHeadlinesFetcher()
+                self.__mainApiMap = self.__apiMap
+            except:
+                print("Error headline fetching.... at "+str(datetime.now()))
+                pass
             sleep(30*60)
 
     def cricbuzzThreader(self):
         while True:
             print("Cricbuzz fetching.... at "+str(datetime.now()))
-            self.__cricketFetcher()
-            self.__mainApiMap = self.__apiMap
+            try:
+                self.__cricketFetcher()
+                self.__mainApiMap = self.__apiMap
+            except:
+                print("Error Cricbuzz fetching.... at "+str(datetime.now()))
+                pass
             sleep(15*60)
 
     def dataGetter(self, topic):
         return self.__mainApiMap[str(topic)]
 
+
+a = Api()
+
 def apiRunner():
-    a = Api()
     t1 = Thread(target=a.topHeadlinesThreader)
     t2 = Thread(target=a.newsCatcherThreader)
     t3 = Thread(target=a.cricbuzzThreader)
@@ -142,3 +136,6 @@ def apiRunner():
     t1.start()
     t2.start()
     t3.start()
+
+def apiData(topic):
+    return a.dataGetter(topic)
