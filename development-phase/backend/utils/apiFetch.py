@@ -45,7 +45,7 @@ class Api:
         for x in respone["articles"]:
             newJson = {}
             newJson["url"] = x["link"]
-            newJson["title"] = x["title"]print
+            newJson["title"] = x["title"]
             newJson["img"] = x["media"]
             newJson["topic"] = x["topic"]
             currTime = parse(x["published_date"])
