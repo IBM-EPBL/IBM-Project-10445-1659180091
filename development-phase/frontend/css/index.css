@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-image: url("../assets/pexels-cottonbro-3944418\ 1.png");
+    background-repeat: none;
+    background-size: cover;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(35, 35, 35, 0.584);
+    padding: 1rem;
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+}
+
+.search_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+
+}
+
+

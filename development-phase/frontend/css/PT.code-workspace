@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../PT"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "IBM-Project-10445-1659180091"
+	}
+}
