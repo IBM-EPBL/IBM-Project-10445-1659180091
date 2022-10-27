@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device.width,initial scale=1.0">
+        <title>Login and Sign Up Page</title>
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <!--custom css file link-->
+        <link rel="stylesheet" href="./login.css">
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                    <span>You can use your custom email</span>
+                    <input type="text" placeholder="NAME" class="box">
+                    <input type="email" placeholder="E-mail" class="box">
+                    <input type="password" placeholder="PASSWORD" class="box">
+                    <input type="password" placeholder="RE-ENTER PASSWORD" class="box">
+                    <button class="btn">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Sign In</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                    <span>Enter your sign in credentials</span>
+                    <input type="email" placeholder="E-mail" class="box">
+                    <input type="password" placeholder="PASSWORD" class="box">
+                    <button class="btn">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Start storing your files here</h1>
+                        <button class="btn" id="signin">sign in</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                    <h1>Welcome to Future of storage!</h1>
+                    <button class="btn" id="signup">sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="./login.js"></script>
+    </body>
+</html>
