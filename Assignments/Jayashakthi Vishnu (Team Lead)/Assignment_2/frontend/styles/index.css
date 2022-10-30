@@ -1,0 +1,25 @@
+header nav .user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav .user > *{
+    margin: 0 .5rem;
+}
+
+header nav .user h3 span{
+    color: var(--accent);
+}
+
+header nav .user .user-logout{
+    background-color: var(--secondary-transparent);
+    color: var(--primary);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.username span, .rollno span{
+    color: var(--accent)
+}
