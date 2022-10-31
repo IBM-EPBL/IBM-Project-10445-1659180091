@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles//auth.css">
+    <title>Personal Expense Tracker | Home</title>
+</head>
+<body>
+    <header>
+        <h1>Assignment 2</h1>
+    </header>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h3 class="active btn-login">Login</h3>
+            <h3 class="btn-signup">SignUp</h3>
+        </div>
+        <div class="auth-form-cnt">
+            <form class="login-form">
+                <div>
+                    <label for="login-username">E-Mail</label>
+                    <input type="text" name="username" id="login-username" required>
+                </div>
+                <div>
+                    <label for="login-password">password</label>
+                    <input type="password" name="password" id="login-password" required>
+                </div>
+                <button class="login-submit btn"><span>Login</span><img class="auth-loader none" src="./assets/coin.png"></button>
+                <p class="auth-err"></p>
+            </form>
+        </div>
+        <div class="auth-form-cnt none">
+            <form class="signup-form">
+                <div>
+                    <label for="signup-email">E-Mail</label>
+                    <input type="email" name="email" id="signup-email" required>
+                </div>
+                <div>
+                    <label for="signup-password">password</label>
+                    <input type="password" name="password" id="signup-password" required>
+                </div>
+                <div>
+                    <label for="signup-re-password">Confirm Password</label>
+                    <input type="password" name="password" id="signup-re-password" required>
+                </div>
+                <div>
+                    <label for="signup-username">Username</label>
+                    <input type="text" name="username" id="signup-re-username" required>
+                </div>
+                <div>
+                    <label for="signup-rollno">Roll No</label>
+                    <input type="text" name="rollno" id="signup-rollno" required>
+                </div>
+                <button class="signup-submit btn"><span>SignUp</span><img class="auth-loader none" src="./assets/coin.png"></button>
+                <p class="auth-err"></p>
+            </form>
+        </div>
+        <div class="msg"></div>
+    </div>
+    <script src="./js/auth.js"></script>
+</body>
+</html>
