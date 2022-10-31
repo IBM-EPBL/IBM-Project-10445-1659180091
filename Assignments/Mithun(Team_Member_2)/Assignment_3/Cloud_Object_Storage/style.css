@@ -1,0 +1,15 @@
+html{
+    background-color: rgb(43, 43, 43);
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 25%;
+}
