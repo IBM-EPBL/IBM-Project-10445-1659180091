@@ -1,0 +1,124 @@
+.auth-container{
+    position: relative;
+    background-color: var(--box-bg);
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    align-items: center;
+    width: 500px;
+    margin: 4rem auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 0 0 .5rem 0;
+}
+
+.auth-container .auth-header{
+    display: flex;
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+}
+
+.auth-container .auth-header h3{
+    width: 50%;
+    text-align: center;
+    padding: .5rem 0;
+    cursor: pointer;
+}
+
+.auth-container .auth-header h3:hover{
+    background-color: var(--primary);
+}
+
+.auth-container .auth-header h3.active{
+    background-color: var(--secondary-transparent);
+    color: var(--primary);
+}
+
+.auth-container .auth-header h3:first-child{
+    border-right: 1px solid var(--accent);
+}
+.auth-container .auth-header h3:last-child{
+    border-left: 1px solid var(--accent);
+}
+
+.auth-container .auth-form-cnt form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-container .auth-form-cnt div{
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container .auth-form-cnt form > * {
+    margin: 2rem 0;
+}
+
+.auth-container .auth-form-cnt input{
+    font-size: 1.8rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--secondary);
+    margin: .5rem 0;
+    border-bottom: 1px solid var(--secondary-transparent);
+}
+
+.auth-container .auth-form-cnt input:focus{
+    border-color: var(--accent);
+}
+
+.auth-container .btn{
+    padding: .5rem 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container .auth-form-cnt .btn img{
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 1rem;
+    animation: loading_animation 1.5s ease infinite;
+}
+
+@keyframes loading_animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.auth-container .btn:hover{
+    background-color: var(--secondary-transparent);
+    color: var(--primary);
+}
+
+.auth-container .auth-form-cnt .auth-err{
+    color: var(--negative);
+    font-size: 1.2rem;
+    margin: .3rem 0;
+}
+
+.re-send-msg{
+    margin: 1rem;
+}
+
+.msg{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 1rem;
+    color: var(--positive);
+}
