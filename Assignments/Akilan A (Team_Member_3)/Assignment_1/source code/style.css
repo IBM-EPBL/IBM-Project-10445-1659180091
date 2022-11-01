@@ -1,0 +1,100 @@
+:root {
+    --primary: #f3f3f3;
+    --secondary: #1b1b32;
+    --secondary-alpha: rgba(30, 30, 50, 0.4);
+    --accent: #37af65;
+  }
+
+*,*::before,*::after{
+    margin:0;
+    padding:0;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 5rem;
+    font-size: 1.5rem;
+    color:var(--primary);
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    line-height: 2;
+    background-image:linear-gradient(
+        115deg,
+        rgba(37, 37, 44, 0.8),
+        rgba(136, 136, 206, 0.7)
+      ),url(https://media.istockphoto.com/photos/round-podium-or-pedestal-with-blue-background-picture-id1226478932?b=1&k=20&m=1226478932&s=170667a&w=0&h=hXsvxQilNanpKx7QC_tIsFUOKPl8fdIDfJ_QSKXesGE=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#form{
+    background:var(--secondary-alpha);
+    width:fit-content;
+    margin: 2rem auto;
+    padding: 1rem 4rem;
+    color:var(--primary);
+    border-radius: 10px;
+    border-style:double;
+    border-color: var(--secondary-alpha);
+    line-height: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#form > div{
+    width: 400px;
+
+}
+
+#form div input{
+    width: 400px;
+    height: 40px;
+    color: var(--secondary);
+    border: none;
+    border-bottom: 2px solid gray;
+    border-radius: 10px;
+    outline: none;
+    font-size:medium;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding: .5rem;
+}
+
+.form-group{
+    width: 100%;
+    
+}
+
+.name-group{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+button{
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1em;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.input-textarea {
+    min-height: 120px;
+    width: 100%;
+    padding: 0.625rem;
+    /* resize: vertical; */
+}
+
+
+
+ 

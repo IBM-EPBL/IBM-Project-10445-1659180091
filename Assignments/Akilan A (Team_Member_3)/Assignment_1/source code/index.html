@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>User Form</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1>User Form</h1>
+            <h3>Thank You for your time to fill the form </h3>
+        </header>
+        <form id = "form">
+
+            <div class="form-group">
+                <label id="name-label" for="name"> Name: </label>
+                <input id="name" type="text" name="name" class="name-group" placeholder="Enter your Name" required />
+            </div>
+        
+            <div>
+                <label id="qualification-label" for="name"> Qualification: </label>
+                <input id="qualification" type="text" name="name" class="name-group" placeholder="Enter your Qualification" required />
+            </div>
+
+            <div>
+                <label id="age-label" for="name"> Age: </label>
+                <input id="age" type="number" name="name" class="name-group" min="1" max="99" placeholder="Enter your Name" required />
+            </div>
+
+            <div>
+                <label id="email-label" for="name"> Email: </label>
+                <input id="email" type="email" name="name" class="name-group" placeholder="Enter your email" required />
+            </div>
+
+            <button type="submit">SUBMIT</button>
+
+        </form>
+    </body>
+</html>

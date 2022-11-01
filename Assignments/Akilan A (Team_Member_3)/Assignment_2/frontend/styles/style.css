@@ -1,0 +1,77 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary: #151517;
+    --secondary: #FFFFFF;
+    --secondary-transparent: rgba(255, 255, 255, 0.7);
+    --accent: #FF5C00;
+    --positive: #00FF00;
+    --negative: #FF0000;
+    --box-bg: #1D1D1D;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+header{
+    background-color: var(--box-bg);
+    height: 80px;
+    padding: .5 2
+    rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+header h1{
+    color: var(--accent);
+    font-size: 2.6rem;
+    margin-left: 2rem;
+}
+
+header nav a{
+    margin-right: 3rem;
+    color: var(--secondary);
+}
+
+header nav a:hover{
+    text-decoration: underline;
+}
+
+.confirm-msg{
+    margin: 2rem auto;
+    font-size: 2rem;
+    color: var(--secondary);
+    background-color: var(--box-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-msg a{
+    color: var(--accent);
+    margin: 1rem auto 0 auto;
+    text-decoration: underline;
+}
+
+.confirm-msg a:hover{
+    color: var(--secondary);
+}
+
+.none{
+    display: none !important;
+}
