@@ -32,7 +32,7 @@ body{
     align-items: center;
     height:100vh;
     margin:0 auto;
-    background:url(./assets/sample2.jpg)no-repeat;
+    background:url(../assets/sample2.jpg)no-repeat;
     background-size:cover;
     background-position:center;
     background-attachment:fixed;
