@@ -73,17 +73,11 @@ form{
 }
 h1{
     font-weight: bold;
+    font-size:2.8rem;
 }
-.social-container{
-    margin:20px;
-}
-.social-container a{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin:0 5px;
-    width:30px;
-    height:40px;
+h2
+{
+    color:red;
 }
 a{
    color:#333;
@@ -91,7 +85,7 @@ a{
    margin:15px;
 }
 span{
-    font-size: 12px;
+    font-size:2rem;
 }
 .form-container form .box{
     width:100%;
@@ -246,7 +240,7 @@ ul.ks-cboxtags li label{
     display: inline-block;
     background-color: rgba(255, 255, 255, .9);
     border: 2px solid rgba(139, 139, 139, .3);
-    color: #adadad;
+    color: #000;
     border-radius: 25px;
     white-space: nowrap;
     margin: 3px 0px;
