@@ -1,7 +1,8 @@
-import { poster, serverAction } from "./modules/server.js";
+import { poster } from "./modules/server.js";
 const signupbutton = document.getElementById("signup");
 const signinbutton = document.getElementById("signin");
 const container = document.getElementById("container");
+
 let signupVal = false;
 
 signupbutton.addEventListener("click", () => {
@@ -27,7 +28,7 @@ signupForm.querySelector("button").addEventListener("click", async (e) => {
     return;
   }
   if (password !== repassword) {
-    signupForm.querySelector("h2").innerText = "Password doesn't match";
+    signupForm.querySelector("h2").innerText = "⚠️ Password doesn't match";
     return;
   } else {
     signupForm.querySelector("h2").innerText = "";
@@ -41,20 +42,21 @@ signupForm.querySelector("button").addEventListener("click", async (e) => {
       favArr.push(t.value);
     }
   });
-  console.log(favArr)
-  signupForm.querySelector("h2").innerText = "Saving data in Server...";
+  signupForm.querySelector("h2").innerText = "⏳ Saving data in Server...";
   let postData = {
     name: name,
     email: email,
     password: password,
     favourite: favArr,
   };
-  let response=await poster("register",postData);
-  if(response.status==="Successfully registered"){
-    signupForm.querySelector("h2").innerText = "User registered successfully...";
+  let response = await poster("register", postData);
+  if (response.status === "Successfully registered") {
+    signupForm.querySelector("h2").innerText =
+      "User registered successfully ✅...";
   }
   setTimeout(() => {
-    signupForm.querySelector("h2").innerText = "Please verify your email before log in";
+    signupForm.querySelector("h2").innerText =
+      "⚠️ Please verify your email before log in";
   }, 1000);
   setTimeout(() => {
     location.reload();
@@ -83,7 +85,7 @@ signupForm.elements[1].addEventListener("change", async (e) => {
     });
     signupVal = false;
     if (data["status"] === false) {
-      signupForm.querySelector("h2").innerText = "Email already in use";
+      signupForm.querySelector("h2").innerText = "⚠️ Email already in use";
       signupForm.elements[1].value = "";
     } else {
       signupForm.querySelector("h2").innerText = "";
@@ -92,5 +94,38 @@ signupForm.elements[1].addEventListener("change", async (e) => {
   } else {
     e.target.value = "";
     signupVal = false;
+  }
+});
+
+const signinForm = document.querySelector(".sign-in-container form");
+signinForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = signinForm.elements[0].value;
+  const password = signinForm.elements[1].value;
+  const data = {
+    email: email,
+    password: password,
+  };
+  let retdata;
+  let emailCheckData = await poster("register/check", {
+    email: email,
+  });
+  if (emailCheckData["status"] === false) {
+    retdata = await poster("login", data);
+    if(retdata["status"]==="Not verified"){
+      signinForm.querySelector("h2").innerText="⚠️ Please verify your mail by clicking the link sent to your mail ID"
+    }
+    else if(retdata["status"]==="Wrong credentials"){
+      signinForm.querySelector("h2").innerText="⚠️ Wrong credentials"
+    }
+    else if(retdata["status"]==="Successfully Logged in"){
+      signinForm.querySelector("h2").innerText="Logged In ✅...Redirecting⏳"
+    }
+    else{
+      signinForm.querySelector("h2").innerText=""
+    }
+  }
+  else{
+    signinForm.querySelector("h2").innerText="⚠️ Email not registered"
   }
 });
