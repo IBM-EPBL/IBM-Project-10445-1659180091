@@ -12,15 +12,15 @@
     <body>
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="#">
+                <form id="signup-form" onsubmit="return false;">
                     <h1>Create Account</h1>
                     <span>You can use your custom email</span>
-                    <input type="text" placeholder="NAME" class="box">
-                    <input type="email" placeholder="E-mail" class="box">
-                    <input type="password" placeholder="PASSWORD" class="box">
-                    <input type="password" placeholder="RE-ENTER PASSWORD" class="box">
+                    <input type="text" placeholder="NAME" class="box" required>
+                    <input type="email" placeholder="E-mail" class="box" required>
+                    <input type="password" placeholder="PASSWORD" class="box" required>
+                    <input type="password" placeholder="RE-ENTER PASSWORD" class="box" required>
                     <button class="btn">Sign Up</button>
-                    <h2>You have entered wrong credentials</h2>
+                    <h2></h2>
                 </form>
             </div>
             <div class="form-container sign-in-container">
@@ -30,7 +30,7 @@
                     <input type="email" placeholder="E-mail" class="box">
                     <input type="password" placeholder="PASSWORD" class="box">
                     <button class="btn">Sign In</button>
-                    <h2>You have entered wrong Sign in details</h2>
+                    <h2></h2>
                 </form>
             </div>
             <div class="overlay-container">
@@ -64,6 +64,6 @@
                 </div>
             </div>
         </div>
-    <script src="../js/login.js"></script>
+    <script src="../js/login.js" type="module"></script>
     </body>
 </html>
