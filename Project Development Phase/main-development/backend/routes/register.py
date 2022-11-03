@@ -11,7 +11,8 @@ class Register(Resource):
         name=req['name']
         email=req['email']
         password=req['password']
-        fav=req['favourite']
+        favourite=req['favourite']
+        fav=','.join(favourite)
         if(name=='' or email=='' or password=='' or fav==''):
             return {"status":"Missing data"},404
         password=genHash(password)
