@@ -1,18 +1,30 @@
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from __future__ import print_function
 from utils.tokener import generate_confirmation_token
+import sib_api_v3_sdk
 import app
+from sib_api_v3_sdk.rest import ApiException
+from datetime import datetime
 
-def emailSender(email,token):
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = "நன்றி, for joining NewsTracker 🙏"
-    msg['From'] = "News Tracker Dev Team"
-    msg['To'] = email
-    text=f"Here is the Link for your account verification\n{token}"
+
+def emailSender(email, token):
+    configuration = sib_api_v3_sdk.Configuration()
+    configuration.api_key['api-key'] = app.data['mail_api_key']
+    api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+        sib_api_v3_sdk.ApiClient(configuration))
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    msg = {}
+    msg['Subject'] = "Verfiy your NewsTracker Account"
+    msg['From'] = {"name": "News Tracker Dev Team",
+                   "email": "verify@newstracker.com"}
+    msg['To'] = [{"email": email}]
+    msg['Text']=f'Please click this <a href="http://127.0.0.1:5500/frontend/pages/verify.html?token={token}">link</a> to verify your account'
     html = f"""\
     <html>
         <head></head>
         <body>
+        <p>நன்றி, for joining NewsTracker 🙏</p>
+        <br>
         <p>Hurray🥳, you just registerd at NewsTracker<br><br>
         Please click the following link to verify your account:<br>
         <a href="http://127.0.0.1:5500/frontend/pages/verify.html?token={token}">Click Here to Verify 😎</a>
@@ -22,15 +34,20 @@ def emailSender(email,token):
         <br><br>
         <p>Regrads,<br></p>
         <p><a href="https://localhost:5000">NewsTracker Dev Team</a></p>
+        <br><br>
+        <p>Email sent at {dt_string}</p>
         </body>
     </html>
     """
-    part1=MIMEText(text,'plain')
-    part2=MIMEText(html,'html')
-    msg.attach(part1)
-    msg.attach(part2)
-    app.s.sendmail("freeacc602@gmail.com",email,msg.as_string())
+    send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
+        to=msg['To'], html_content=html, sender=msg['From'], subject=msg['Subject'],text_content=msg['Text'])
+    try:
+        api_response = api_instance.send_transac_email(send_smtp_email)
+        print(api_response)
+    except ApiException as e:
+        print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)
+
 
 def newEmailSender(email):
-    token=generate_confirmation_token(email)
-    emailSender(email,token)
+    token = generate_confirmation_token(email)
+    emailSender(email, token)
