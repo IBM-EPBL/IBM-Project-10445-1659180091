@@ -1,4 +1,4 @@
-import { poster } from "./modules/server.js";
+import { getter, poster } from "./modules/server.js";
 const signupbutton = document.getElementById("signup");
 const signinbutton = document.getElementById("signin");
 const container = document.getElementById("container");
@@ -112,20 +112,24 @@ signinForm.addEventListener("submit", async (e) => {
   });
   if (emailCheckData["status"] === false) {
     retdata = await poster("login", data);
-    if(retdata["status"]==="Not verified"){
-      signinForm.querySelector("h2").innerText="⚠️ Please verify your mail by clicking the link sent to your mail ID"
+    if (retdata["status"] === "Not verified") {
+      signinForm.querySelector("h2").innerText =
+        "⚠️ Please verify your mail by clicking the link sent to your mail ID";
+    } else if (retdata["status"] === "Wrong credentials") {
+      signinForm.querySelector("h2").innerText = "⚠️ Wrong credentials";
+    } else if (retdata["status"] === "Successfully Logged in") {
+      signinForm.querySelector("h2").innerText = "Logged In ✅...Redirecting⏳";
+    } else {
+      signinForm.querySelector("h2").innerText = "";
     }
-    else if(retdata["status"]==="Wrong credentials"){
-      signinForm.querySelector("h2").innerText="⚠️ Wrong credentials"
-    }
-    else if(retdata["status"]==="Successfully Logged in"){
-      signinForm.querySelector("h2").innerText="Logged In ✅...Redirecting⏳"
-    }
-    else{
-      signinForm.querySelector("h2").innerText=""
-    }
-  }
-  else{
-    signinForm.querySelector("h2").innerText="⚠️ Email not registered"
+  } else {
+    signinForm.querySelector("h2").innerText = "⚠️ Email not registered";
   }
 });
+
+window.addEventListener("load",async()=>{
+  let t=await getter("/islogin");
+  if(t["status"]=="Logged in"){
+    location.href="index.html";
+  }
+})
