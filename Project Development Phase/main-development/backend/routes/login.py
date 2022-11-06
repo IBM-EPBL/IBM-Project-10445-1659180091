@@ -12,6 +12,7 @@ import jwt
 class Login(Resource):
     def post(self):
         data=request.json
+        ip=request.headers.get("ip")
         email=data["email"]
         password=data["password"]
         queryRes=selectQuery("SELECT * from user where email=?",(email,))
@@ -32,7 +33,7 @@ class Login(Resource):
         @after_this_request
         def cookieSender(response):
             access_token=jwt.encode(
-                {"email":email},app.app.config['SECRET_KEY']
+                {"email":email,"ip":ip},app.app.config['SECRET_KEY']
             )
             response.set_cookie("access_token",str(access_token),httponly=True)
             response.set_cookie("email",str(email),httponly=True)
