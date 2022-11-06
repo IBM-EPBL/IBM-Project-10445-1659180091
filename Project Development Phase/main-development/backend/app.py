@@ -6,6 +6,7 @@ from routes.register import Register
 from routes.checkEmail import CheckEmail
 from routes.verify import Verify
 from routes.getnews import *
+from routes.islogin import IsLogin
 from routes.login import Login
 from flask_restful import Api
 from utils.apiFetch import apiRunner
@@ -24,6 +25,7 @@ apiRunner()
 CORS(app, supports_credentials=True)
 
 api.add_resource(Login, '/login')
+api.add_resource(IsLogin,'/islogin')
 api.add_resource(CheckEmail, '/register/check')
 api.add_resource(Register, '/register')
 api.add_resource(Verify, '/register/verify')
