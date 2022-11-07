@@ -5,8 +5,9 @@ const ipAddr=async()=>{
     data=data["ip"];
     return data;
 }
+URL=`http://localhost:5000/`
 export const poster=async(endpoint,data)=>{
-    let url=`http://127.0.0.1:5000/${endpoint}`
+    let url=`${URL}/${endpoint}`
     let ip=await ipAddr();
     let retData=await fetch(url,{
         method:"POST",
@@ -24,7 +25,7 @@ export const poster=async(endpoint,data)=>{
 }
 
 export const getter=async(endpoint)=>{
-    let url=`http://127.0.0.1:5000/${endpoint}`
+    let url=`${URL}/${endpoint}`
     let ip=await ipAddr();
     let retData=await fetch(url,{
         headers:{
