@@ -1,14 +1,14 @@
-const ipAddr=async()=>{
-    let url=`https://jsonip.com/`
-    let data=await fetch(url)
-    data=await data.json();
-    data=data["ip"];
+const browserData=async()=>{
+    let t1=JSON.stringify(window.navigator.userAgentData)
+    let t2=window.navigator.userAgent
+    let data=t1+t2;
+    console.log(data)
     return data;
 }
 URL=`http://localhost:5000/`
 export const poster=async(endpoint,data)=>{
     let url=`${URL}/${endpoint}`
-    let ip=await ipAddr();
+    let ip=await browserData();
     let retData=await fetch(url,{
         method:"POST",
         mode:"cors",
@@ -26,7 +26,7 @@ export const poster=async(endpoint,data)=>{
 
 export const getter=async(endpoint)=>{
     let url=`${URL}/${endpoint}`
-    let ip=await ipAddr();
+    let ip=await browserData();
     let retData=await fetch(url,{
         headers:{
             "ip":ip
