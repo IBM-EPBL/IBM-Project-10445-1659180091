@@ -128,7 +128,7 @@ signinForm.addEventListener("submit", async (e) => {
 });
 
 window.addEventListener("load",async()=>{
-  let t=await getter("/islogin");
+  let t=await getter("islogin");
   if(t["status"]=="Logged in"){
     location.href="index.html";
   }
