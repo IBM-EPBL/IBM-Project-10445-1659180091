@@ -5,7 +5,7 @@ const browserData=async()=>{
     console.log(data)
     return data;
 }
-URL=`http://159.122.178.87:30646`
+URL=`https://159.122.178.87:30646`
 // URL=`http://localhost:5000`
 export const poster=async(endpoint,data)=>{
     let url=`${URL}/${endpoint}`
