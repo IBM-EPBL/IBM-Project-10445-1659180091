@@ -1,8 +1,7 @@
-
 // logout button
+
 const profile_button = document.getElementById("user_icon");
 const profile_div = document.querySelector(".profile_div");
-console.log(profile_div);
 profile_button.addEventListener('click', ()=>{
     profile_div.classList.toggle("display_none");
 })
@@ -18,4 +17,6 @@ nav_buttons.forEach(nav_button => {
         })
     })
 });
+
+
 

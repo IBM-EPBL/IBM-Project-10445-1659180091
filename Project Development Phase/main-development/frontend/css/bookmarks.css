@@ -127,23 +127,6 @@ nav {
     padding-bottom: 0.5rem;
 }
 
-.horizontal_content {
-    display: flex;
-    padding: 0 1rem;
-    margin: 2rem 0;
-    max-width: 100%;
-    overflow-x: scroll;
-}
-.horizontal_content>div {
-    position: relative;
-    display: flex;
-    padding: 1rem;
-    margin: 0 1rem;
-}
-.horizontal_content .news_cont{
-    display: flex;
-    flex-direction: column;
-}
 .bookmark {
     position: absolute;
     right: 5px;

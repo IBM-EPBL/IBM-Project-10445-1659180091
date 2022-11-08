@@ -9,3 +9,16 @@ async function fetcher(){
     }
 }
 fetcher()
+
+let bookmarks = document.querySelectorAll(".bookmark");
+bookmarks.forEach( bookmark => {
+    bookmark.addEventListener("click", () => {
+        if(bookmark.src.match("../assets/bookmark-regular.svg")){
+            bookmark.src = "../assets/bookmark-solid.svg";
+        }
+        else {
+            bookmark.src = "../assets/bookmark-regular.svg";
+        }
+        
+    })
+})
