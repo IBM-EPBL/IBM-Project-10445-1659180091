@@ -15,16 +15,16 @@ def token_required(f):
                 resp={"status":"not logged in"}
                 @after_this_request
                 def deleter(response):
-                    response.delete_cookie("access_token", domain="127.0.0.1", path="/")
-                    response.delete_cookie("email",domain="127.0.0.1",path="/")
+                    response.delete_cookie("access_token",path="/")
+                    response.delete_cookie("email",path="/")
                     return response
                 return resp,401
         except:
             resp = {"status":"not logged in"}
             @after_this_request
             def deleter(response):
-                response.delete_cookie("access_token", domain="127.0.0.1", path="/")
-                response.delete_cookie("email",domain="127.0.0.1",path="/")
+                response.delete_cookie("access_token",path="/")
+                response.delete_cookie("email",path="/")
                 return response
             return resp, 401
         return f(data['email'],*args, **kwargs)
