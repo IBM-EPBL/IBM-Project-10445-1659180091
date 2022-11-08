@@ -35,8 +35,10 @@ class Login(Resource):
             access_token=jwt.encode(
                 {"email":email,"ip":ip},app.app.config['SECRET_KEY']
             )
-            response.set_cookie("access_token",str(access_token),httponly=True)
-            response.set_cookie("email",str(email),httponly=True)
+            # response.set_cookie("access_token",str(access_token),httponly=True,samesite=None,path="/")
+            # response.set_cookie("email",str(email),httponly=True,samesite=None,path="/")
+            response.headers.add('Set-Cookie',f'access_token={str(access_token)}; SameSite=None; Secure; HttpOnly; Path=/')
+            response.headers.add('Set-Cookie',f'email={str(email)}; SameSite=None; Secure; HttpOnly; Path=/')
             return response
         
         return{"status":"Successfully Logged in"},200        
