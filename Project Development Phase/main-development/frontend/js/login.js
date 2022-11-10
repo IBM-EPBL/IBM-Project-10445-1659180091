@@ -119,6 +119,9 @@ signinForm.addEventListener("submit", async (e) => {
       signinForm.querySelector("h2").innerText = "⚠️ Wrong credentials";
     } else if (retdata["status"] === "Successfully Logged in") {
       signinForm.querySelector("h2").innerText = "Logged In ✅...Redirecting⏳";
+      setTimeout(()=>{
+        location.href="index.html"
+      },2000);
     } else {
       signinForm.querySelector("h2").innerText = "";
     }
