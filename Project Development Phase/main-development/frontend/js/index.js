@@ -8,7 +8,17 @@ async function fetcher(){
         console.log(t1);
     }
 }
-fetcher()
+
+window.addEventListener("load",async()=>{
+  let t=await getter("islogin");
+  console.log(t)
+  if(t["status"]==="not logged in"){
+    location.href="login.html";
+  }
+  else{
+    fetcher()
+  }
+})
 
 let bookmarks = document.querySelectorAll(".bookmark");
 bookmarks.forEach( bookmark => {
