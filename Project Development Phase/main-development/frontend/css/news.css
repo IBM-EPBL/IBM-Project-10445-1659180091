@@ -83,3 +83,6 @@ nav {
 .display_none {
     display: none;
 }
+iframe{
+    height: calc(100vh - 100px);
+}
