@@ -4,8 +4,7 @@ const browserData=async()=>{
     let data=t1+t2;
     return data;
 }
-URL=`https://159.122.178.87:30646`
-// URL=`http://localhost:5000`
+URL=`https://159.122.181.156:32697`
 export const poster=async(endpoint,data)=>{
     let url=`${URL}/${endpoint}`
     let ip=await browserData();
@@ -21,6 +20,9 @@ export const poster=async(endpoint,data)=>{
         credentials:"include"
     });
     retData=await retData.json();
+    if(retData["status"]==="not logged in"){
+        location.href="login.html"
+    }
     return retData;
 }
 
@@ -34,6 +36,9 @@ export const getter=async(endpoint)=>{
         credentials:"include"
     });
     retData=await retData.json();
+    if(retData["status"]==="not logged in" && endpoint!=="islogin"){
+        location.href="login.html"
+    }
     return retData;
 }
 
