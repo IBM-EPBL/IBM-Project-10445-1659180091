@@ -35,7 +35,35 @@ async function fetcher() {
       document.querySelector(".vertical-wrapper").innerHTML = verticalLoader;
       verticalCardData(a, 0);
     }
+  } 
+  horizontalCardData();
+}
+
+function horizontalCardData(){
+  let horizontalCard=document.querySelector(".horizontal_content");
+  horizontalCard.innerHTML="";
+  for(let i=0;i<4;i++){
+    let heading=Math.floor(Math.random()*arr.length);
+    let topic=arr[+heading];
+    let data=apiData[topic]["data"][Math.floor(Math.random()*apiData[topic]["data"].length)]
+    console.log(data);
+    horizontalCard.innerHTML+=`<div class="news_wrapper" data-href=news.html?url=${data["url"]}>
+    <img class="bookmark" src="../assets/bookmark-regular.svg" alt="" />
+    <div class="news_cont">
+      <div class="img_cont">
+        <img
+          src=${data["img"]||data["image"]}
+          alt=""
+          class="news_thumbnail"
+        />
+      </div>
+      <div class="news_content">
+        <h2 class="news_heading">${data["title"]}</h2>
+      </div>
+    </div>
+  </div>`
   }
+  eventTriggerer();
 }
 
 function verticalCardData(heading, start) {
