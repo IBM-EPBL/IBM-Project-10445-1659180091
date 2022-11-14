@@ -127,6 +127,10 @@ nav {
     padding-bottom: 0.5rem;
 }
 
+#home .vertical-wrapper{
+    margin-top: 7rem;
+}
+
 .bookmark {
     position: absolute;
     right: 5px;
@@ -134,6 +138,25 @@ nav {
     height: 1rem;
     width: 1rem;
     cursor: pointer;
+}
+
+.animation-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #d7d7d780;
+    z-index: 9999;
+}
+.animation-container img{
+    border-radius: 100%;
+}
+
+.none{
+    display: none;
 }
 
 .display_none {
