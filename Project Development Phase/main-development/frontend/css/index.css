@@ -219,6 +219,9 @@ nav {
     background: rgba(128, 128, 128, 0.37);
   }
 
+  .horizontal_content .news_wrapper{
+    width: 400px;
+  }
 .img_cont{
     width: 300px;
     height: 200px;
@@ -230,6 +233,7 @@ nav {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 1rem;
 }
 
 .loading-cont img{
