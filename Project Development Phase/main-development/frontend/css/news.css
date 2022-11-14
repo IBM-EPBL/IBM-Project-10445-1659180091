@@ -83,6 +83,9 @@ nav {
 .display_none {
     display: none;
 }
+.logout{
+    cursor: pointer;
+}
 iframe{
     height: calc(100vh - 100px);
 }
