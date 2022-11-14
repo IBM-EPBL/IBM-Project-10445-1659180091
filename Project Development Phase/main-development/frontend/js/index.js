@@ -1,4 +1,7 @@
-import { getter } from "./modules/server.js";
+import { getter, poster } from "./modules/server.js";
+
+//variables
+
 let apiData = {};
 let heading = document.querySelectorAll(".menu_container h3");
 let currHeading = "recommended";
@@ -23,36 +26,30 @@ let arr = [
 ];
 let verticalLoader = `        <div class="loading-cont">
 <img src="../assets/newspaper-spinner.gif" alt="">
-<h2>Loading...</h2>
+<h2>⌛️</h2>
 </div>`;
+let verticalWrapper = document.querySelector(".vertical-wrapper");
+let horizontalWrapper = document.querySelector(".horizontal_content");
+let bookmarks = document.querySelectorAll(".bookmark");
+let bookmarkLoadingIcon=document.querySelector(".animation-container");
+//Data fillers
 
-async function fetcher() {
-  let t = await getter("news/headline");
-  for (const a of arr) {
-    let t1 = await getter(`news/${a}`);
-    apiData[a] = t1;
-    if (a === "recommended") {
-      document.querySelector(".vertical-wrapper").innerHTML = verticalLoader;
-      verticalCardData(a, 0);
-    }
-  } 
-  horizontalCardData();
-}
-
-function horizontalCardData(){
-  let horizontalCard=document.querySelector(".horizontal_content");
-  horizontalCard.innerHTML="";
-  for(let i=0;i<4;i++){
-    let heading=Math.floor(Math.random()*arr.length);
-    let topic=arr[+heading];
-    let data=apiData[topic]["data"][Math.floor(Math.random()*apiData[topic]["data"].length)]
-    console.log(data);
-    horizontalCard.innerHTML+=`<div class="news_wrapper" data-href=news.html?url=${data["url"]}>
+function horizontalCardData() {
+  horizontalWrapper.innerHTML = "";
+  for (let i = 0; i < 4; i++) {
+    let heading = Math.floor(Math.random() * arr.length);
+    let topic = arr[+heading];
+    let data =
+      apiData[topic]["data"][
+        Math.floor(Math.random() * apiData[topic]["data"].length)
+      ];
+    let element = elementCreator(data);
+    element.innerHTML = `
     <img class="bookmark" src="../assets/bookmark-regular.svg" alt="" />
     <div class="news_cont">
       <div class="img_cont">
         <img
-          src=${data["img"]||data["image"]}
+          src=${data["img"] || data["image"]}
           alt=""
           class="news_thumbnail"
         />
@@ -60,10 +57,10 @@ function horizontalCardData(){
       <div class="news_content">
         <h2 class="news_heading">${data["title"]}</h2>
       </div>
-    </div>
-  </div>`
+    </div>`;
+    addEventListeners(element);
+    horizontalWrapper.appendChild(element);
   }
-  eventTriggerer();
 }
 
 function verticalCardData(heading, start) {
@@ -71,16 +68,15 @@ function verticalCardData(heading, start) {
     document.querySelector(".vertical-wrapper").innerHTML = "";
   }
   let data = apiData[heading];
-  if (data === undefined) {
-    document.querySelector(".vertical-wrapper").innerHTML = verticalLoader;
+  if (data === undefined || data.length === 0) {
+    verticalWrapper.innerHTML = verticalLoader;
     return;
   }
   data = data["data"];
   data = data.slice(start, start + 6);
-  console.log(data);
-  let t = "";
   data.forEach((d) => {
-    t += `<div class="news_wrapper" data-href="news.html?url=${d["url"]}">
+    let element = elementCreator(d);
+    element.innerHTML = `
     <img class="bookmark" src="../assets/bookmark-regular.svg" alt="" />
     <div class="news_cont">
       <div class="img_cont">
@@ -99,22 +95,26 @@ function verticalCardData(heading, start) {
           <h3 class="topic">${d["topic"]}</h3>
         </div>
       </div>
-    </div>
-  </div>`;
+    </div>`;
+    addEventListeners(element);
+    verticalWrapper.appendChild(element);
   });
-  document.querySelector(".vertical-wrapper").innerHTML += t;
-  eventTriggerer();
 }
 
-function eventTriggerer() {
-  document.querySelectorAll(".news_wrapper").forEach((t) => {
-    t.addEventListener("click", (e) => {
-      if (e.target.className === "bookmark") {
-        return;
-      } else {
-        location.href = t.dataset.href;
-      }
-    });
+//Event Listeners
+
+function addEventListeners(t) {
+  t.addEventListener("click",async(e) => {
+    if (e.target.className === "bookmark") {
+      bookmarkLoadingIcon.classList.remove("none");
+      await poster("bookmark", { news: t.dataset.news });
+      bookmarkLoadingIcon.classList.add("none");
+      let img=t.querySelector("img");
+      img.className+=" unbookmark";
+      img.src="../assets/bookmark-solid.svg"
+    } else {
+      location.href = t.dataset.href;
+    }
   });
 }
 
@@ -128,7 +128,6 @@ window.addEventListener("load", async () => {
   }
 });
 
-let bookmarks = document.querySelectorAll(".bookmark");
 bookmarks.forEach((bookmark) => {
   bookmark.addEventListener("click", () => {
     if (bookmark.src.match("../assets/bookmark-regular.svg")) {
@@ -157,8 +156,36 @@ heading.forEach((t) => {
       currHeading = temp;
       currPos = 0;
       scrollTo(0, 0);
-      document.querySelector(".vertical-wrapper").innerHTML = verticalLoader;
+      while (verticalWrapper.lastElementChild) {
+        verticalWrapper.removeChild(verticalWrapper.lastChild);
+      }
       verticalCardData(currHeading, 0);
     }
   });
 });
+
+document.querySelector(".logout").addEventListener("click", () => {
+  getter("logout");
+});
+
+//utils
+function elementCreator(data) {
+  let element = document.createElement("div");
+  element.className = "news_wrapper";
+  element.dataset.href = `news.html?url=${data["url"]}`;
+  element.dataset.news = JSON.stringify(data);
+  return element;
+}
+
+async function fetcher() {
+  let t = await getter("news/headline");
+  for (const a of arr) {
+    let t1 = await getter(`news/${a}`);
+    apiData[a] = t1;
+    if (a === "recommended") {
+      verticalWrapper.innerHTML = verticalLoader;
+      verticalCardData(a, 0);
+    }
+  }
+  horizontalCardData();
+}
