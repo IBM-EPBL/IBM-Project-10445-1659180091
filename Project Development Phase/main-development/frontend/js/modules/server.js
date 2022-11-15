@@ -4,7 +4,8 @@ const browserData=async()=>{
     let data=t1+t2;
     return data;
 }
-URL=`https://159.122.181.156:32697`
+URL=`https://159.122.183.93:30582`
+//URL=`https://localhost:8000`
 export const poster=async(endpoint,data)=>{
     let url=`${URL}/${endpoint}`
     let ip=await browserData();
