@@ -182,10 +182,7 @@ async function fetcher() {
   for (const a of arr) {
     let t1 = await getter(`news/${a}`);
     apiData[a] = t1;
-    if (a === "recommended") {
-      verticalWrapper.innerHTML = verticalLoader;
-      verticalCardData(a, 0);
-    }
+    verticalCardData(currHeading,0);
   }
   horizontalCardData();
 }
