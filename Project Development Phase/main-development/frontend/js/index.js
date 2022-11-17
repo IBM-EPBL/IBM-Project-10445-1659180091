@@ -7,8 +7,8 @@ let heading = document.querySelectorAll(".menu_container h3");
 let currHeading = "recommended";
 let currPos = 0;
 let arr = [
-  "recommended",
   "headline",
+  "recommended",
   "sport",
   "tech",
   "world",
@@ -22,11 +22,15 @@ let arr = [
   "music",
   "food",
   "science",
-  "cricket",
+  "cricket"
 ];
-let verticalLoader = `        <div class="loading-cont">
-<img src="../assets/newspaper-spinner.gif" alt="">
-<h2>⌛️</h2>
+let verticalLoader = document.createElement("div");
+verticalLoader.className="loading-cont";
+verticalLoader.innerHTML=`<img src="../assets/newspaper-spinner.gif" alt="">
+<h2>⌛️</h2>`
+let noDataLoader = `<div class="loading-cont">
+<img src="../assets/no-data.gif" alt="">
+<h2>Try again after some time...😔</h2>
 </div>`;
 let verticalWrapper = document.querySelector(".vertical-wrapper");
 let horizontalWrapper = document.querySelector(".horizontal_content");
@@ -64,12 +68,19 @@ function horizontalCardData() {
 }
 
 function verticalCardData(heading, start) {
+  if(verticalWrapper.contains(verticalLoader)){
+    verticalWrapper.removeChild(verticalLoader);
+  }  
   if (start === 0) {
     document.querySelector(".vertical-wrapper").innerHTML = "";
   }
   let data = apiData[heading];
-  if (data === undefined || data.length === 0) {
-    verticalWrapper.innerHTML = verticalLoader;
+  if(data===undefined){
+    verticalWrapper.innerHTML="";
+    verticalWrapper.appendChild(verticalLoader);
+  }
+  if (data["data"] === undefined || data["data"].length === 0) {
+    verticalWrapper.innerHTML = noDataLoader;
     return;
   }
   data = data["data"];
@@ -113,14 +124,17 @@ function addEventListeners(t) {
       img.className+=" unbookmark";
       img.src="../assets/bookmark-solid.svg"
     } else {
-      location.href = t.dataset.href;
+      let a=document.createElement("a");
+      a.href=t.dataset.href;
+      a.target="_blank";
+      a.click();
     }
   });
 }
 
 window.addEventListener("load", async () => {
+  verticalWrapper.appendChild(verticalLoader);
   let t = await getter("islogin");
-  console.log(t);
   if (t["status"] === "not logged in") {
     location.href = "login.html";
   } else {
@@ -138,15 +152,21 @@ bookmarks.forEach((bookmark) => {
   });
 });
 
-window.addEventListener("scroll", () => {
-  const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+const scrollFunction=() => {
+  const { scrollHeight} = document.documentElement;
+  const scrollTop=window.pageYOffset;
+  const clientHeight=window.innerHeight;
   if (scrollTop + clientHeight > scrollHeight - 5) {
     setTimeout(() => {
       currPos += 6;
       verticalCardData(currHeading, currPos);
     }, 400);
   }
-});
+}
+
+
+window.addEventListener("scroll", scrollFunction);
+window.addEventListener("touchmove",scrollFunction);
 
 heading.forEach((t) => {
   t.addEventListener("click", (e) => {
@@ -178,11 +198,12 @@ function elementCreator(data) {
 }
 
 async function fetcher() {
-  let t = await getter("news/headline");
   for (const a of arr) {
     let t1 = await getter(`news/${a}`);
     apiData[a] = t1;
-    verticalCardData(currHeading,0);
+    if(a===currHeading){
+      verticalCardData(a,currPos);
+    }
   }
   horizontalCardData();
 }
