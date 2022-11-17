@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login and Sign Up Page</title>
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <!--custom css file link-->
+        <link rel="stylesheet" href="../css/login.css">
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form id="signup-form" onsubmit="return false;">
+                    <h1>Create Account</h1>
+                    <span>You can use your custom email</span>
+                    <input type="text" placeholder="NAME" class="box" required autocomplete="name">
+                    <input type="email" placeholder="E-mail" class="box" required autocomplete="email">
+                    <input type="password" placeholder="PASSWORD" class="box" required autocomplete="current-password">
+                    <input type="password" placeholder="RE-ENTER PASSWORD" class="box" required autocomplete="current-password">
+                    <button class="btn">Sign Up</button>
+                    <h2></h2>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form onsubmit="return false;">
+                    <h1>Sign In</h1>
+                    <span>Enter your sign in credentials</span>
+                    <input type="email" placeholder="E-mail" class="box" autocomplete="email">
+                    <input type="password" placeholder="PASSWORD" class="box" autocomplete="current-password">
+                    <button class="btn">Sign In</button>
+                    <h2></h2>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <div class="container-checkbox">
+                            <ul class="ks-cboxtags">
+                              <li><input type="checkbox" id="checkboxOne" value="sport" checked><label for="checkboxOne">sport</label></li>
+                              <li><input type="checkbox" id="checkboxTwo" value="tech" checked><label for="checkboxTwo">tech</label></li>
+                              <li><input type="checkbox" id="checkboxThree" value="world"><label for="checkboxThree">world</label></li>
+                              <li><input type="checkbox" id="checkboxFour" value="finance"><label for="checkboxFour">finance</label></li>
+                              <li><input type="checkbox" id="checkboxFive" value="politics" checked><label for="checkboxFive">politics</label></li>
+                              <li><input type="checkbox" id="checkboxSix" value="business"><label for="checkboxSix">business</label></li>
+                              <li><input type="checkbox" id="checkboxSeven" value="economics"><label for="checkboxSeven">economics</label></li>
+                              <li><input type="checkbox" id="checkboxEight" value="entertainment"><label for="checkboxEight">entertainment</label></li>
+                              <li><input type="checkbox" id="checkboxNine" value="beauty"><label for="checkboxNine">beauty</label></li>
+                              <li><input type="checkbox" id="checkboxTen" value="travel"><label for="checkboxTen">travel</label></li>
+                              <li><input type="checkbox" id="checkboxEleven" value="music"><label for="checkboxEleven">music</label></li>
+                              <li><input type="checkbox" id="checkboxTwelve" value="food"><label for="checkboxTwelve">food</label></li>
+                              <li><input type="checkbox" id="checkboxThirteen" value="science"><label for="checkboxThirteen">science</label></li>
+                              <li><input type="checkbox" id="checkboxFourteen" value="cricket"><label for="checkboxFourteen">cricket</label></li>
+                            </ul>
+                          </div>
+                        <h1>Already registed ?</h1>
+                        <button class="btn" id="signin">sign in</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                    <h1>Welcome to latest world updates!</h1>
+                    <button class="btn" id="signup">sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="../js/login.js" type="module"></script>
+    </body>
+</html>

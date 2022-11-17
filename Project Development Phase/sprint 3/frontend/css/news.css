@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    /* background-image: url("../assets/pexels-cottonbro-3944418\ 1.png");
+    background-repeat: none;
+    background-size: cover; */
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    min-width: 100%;
+    box-shadow: 0 0 5px rgba(35, 35, 35, 0.584);
+    /* padding: 1rem; */
+    background-color: #d9d9d9be;
+    height: 100px;
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+}
+
+.search_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.menu_container {
+    display: flex;
+}
+.menu_container h3 {
+    padding: 1rem 1rem 0.1rem 1rem;
+    cursor: pointer;
+}
+.menu_container h3:first-child {
+    border-bottom: solid 3px black;
+}
+
+#ham_icon {
+    padding: 1rem;
+}
+#user_icon {
+    padding: 1rem;
+    cursor: pointer;
+}
+.profile_div {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    box-shadow: 0 0 3px black;
+    border-radius: 3px;
+}
+.logout {
+    padding: 0.4rem 2rem;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 2rem 0 2rem;
+}
+.display_none {
+    display: none;
+}
+.logout{
+    cursor: pointer;
+}
+iframe{
+    height: calc(100vh - 100px);
+}
