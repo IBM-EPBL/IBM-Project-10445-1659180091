@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-portal
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: job-portal
+  template:
+    metadata:
+      labels:
+        app: job-portal 
+
+    spec:
+      containers:
+        - name: job-portal-container
+          image: icr.io/naalaiya-thiran/job-portal
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+              protocol: TCP
