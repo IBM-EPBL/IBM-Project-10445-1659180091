@@ -1,0 +1,23 @@
+.head{
+    position: relative;
+    transition: transform 0.7s; 
+}
+.head:hover
+{
+    transform: scale(1.1);
+}
+.pbut
+{
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgb(59, 153, 204);
+    border-color: rgba(11, 213, 254, 0);
+    transition: transform 0.2s; 
+    font-weight: 600;
+    font-size: larger;
+}
+.pbut:hover
+{
+    transform: scale(1.1);
+}
