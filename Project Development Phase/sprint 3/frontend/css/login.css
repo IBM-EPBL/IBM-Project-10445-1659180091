@@ -61,6 +61,9 @@ body{
     z-index:1;
     opacity:0;
 }
+.sign-up-container{
+    overflow-y:auto;
+}
 form{
     background-color: white;
     display:flex;
@@ -70,6 +73,7 @@ form{
     padding:0 50px;
     height:100%;
     text-align: center;
+    overflow: auto;
 }
 h1{
     font-weight: bold;
@@ -111,6 +115,7 @@ span{
     width:50%;
     z-index:2;
 }
+
 .overlay-container{
     position:absolute;
     top:0;
@@ -227,6 +232,8 @@ span{
     max-width: 640px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
+    display: inline;
+    overflow-y:auto;
 }
 
 ul.ks-cboxtags {
