@@ -15,7 +15,7 @@ We have tested the App in both mobile and PC and it worked well. It takes around
 
 ## URLs for the site:
 - [Live website Link](http://159.122.183.93:31965)
-- [Demo video link](https://drive.google.com/file/d/1C2Y9xc5TgfFzpX3_xcEgFnk2_VqRjpGL/view?usp=sharing)
+- [Demo video link](https://youtu.be/qSX9ildVbq8)
 
 ## Team Members:
 - Jayashakthi Vishnu P - 7179KCTKCTKCTKCTKCTKCT19BIT026
