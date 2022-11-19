@@ -21,7 +21,7 @@ The app works well in both PCs and mobile phones. It takes around 1-2 seconds fo
 
 ## URLs for the site:
 - [Live website Link](http://159.122.183.93:31965)
-- [Demo video link](https://drive.google.com/file/d/1C2Y9xc5TgfFzpX3_xcEgFnk2_VqRjpGL/view?usp=sharing)
+- [Demo video link](https://youtu.be/-FNAAcfvv-0)
 
 ## Team Members:
 - [Jayashakthi Vishnu P](https://github.com/Jayashakthi28)
